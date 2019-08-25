@@ -33,7 +33,7 @@
 			z-index: 1000;
 			position: fixed;
 			border-radius: 50%;
-			background-image: radial-gradient(#f8a376, coral);
+			// background-image: radial-gradient(#f8a376, coral);
 			transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
 		}
 		&__nav {
@@ -154,33 +154,19 @@
 <template>
 	<div class="navigation">
 		<input type="checkbox" class="navigation__checkbox" id="nav-toggle" />
-		<label for="nav-toggle" class="navigation__btn">
+		<label for="nav-toggle" class="navigation__btn" v-if="burger">
 			<span class="navigation__icon">&nbsp;</span>
 		</label>
 
-		<div class="navigation__bg">&nbsp;</div>
+		<div class="navigation__bg" ref="bg">&nbsp;</div>
 
 		<nav class="navigation__nav">
 			<ul class="navigation__list">
-				<li class="navigation__item">
-					<a href="#" class="navigation__link"><span>01</span>About Juicee</a>
-				</li>
-				<li class="navigation__item">
-					<a href="#" class="navigation__link"><span>02</span>Your benefits</a>
-				</li>
-				<li class="navigation__item">
-					<a href="#" class="navigation__link"><span>03</span>Your benefits</a>
-				</li>
-				<li class="navigation__item">
+				<li class="navigation__item" v-for="link in links" :key="link.id">
 					<a href="#" class="navigation__link"
-						><span>04</span>Popular Websites</a
+						><span>{{ link.id }}</span
+						>{{ link.name }}</a
 					>
-				</li>
-				<li class="navigation__item">
-					<a href="#" class="navigation__link"><span>05</span>Projects</a>
-				</li>
-				<li class="navigation__item">
-					<a href="#" class="navigation__link"><span>06</span>Staff</a>
 				</li>
 			</ul>
 		</nav>
@@ -189,6 +175,26 @@
 
 <script>
 	export default {
-		name: "BurgerExpand"
+		name: "BurgerExpand",
+		props: {
+			links: {
+				type: Array,
+				required: true
+			},
+			burger: {
+				type: Boolean,
+				default: true
+			},
+			expandColor: {
+				type: Array,
+				required: true
+			}
+		},
+		mounted() {
+			let bg = this.$refs.bg;
+			bg.style.backgroundImage = `radial-gradient(${this.expandColor[0]}, ${
+				this.expandColor[1]
+			})`;
+		}
 	};
 </script>
