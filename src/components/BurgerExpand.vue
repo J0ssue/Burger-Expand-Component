@@ -11,24 +11,25 @@
 			display: none;
 		}
 		&__btn {
-			width: 7rem;
-			right: 6rem;
-			top: 6rem;
+			width: 70px;
+			right: 60px;
+			top: 60px;
 			background-color: white;
-			height: 7rem;
+			height: 70px;
 			z-index: 3000;
 			position: fixed;
 			border-radius: 50%;
 			box-shadow: 0 0.7rem 2rem rgba(black, 0.1);
+			text-align: center;
 			&:hover {
 				cursor: pointer;
 			}
 		}
 		&__bg {
-			top: 6.5rem;
-			right: 6.5rem;
-			width: 6rem;
-			height: 6rem;
+			top: 65px;
+			right: 65px;
+			width: 60px;
+			height: 60px;
 			z-index: 1000;
 			position: fixed;
 			border-radius: 50%;
@@ -101,18 +102,51 @@
 
 		// ICON
 		&__icon {
+			position: relative;
+			margin-top: 35px;
 			&,
 			&::before,
 			&::after {
 				width: 30px;
 				height: 2px;
 				background-color: #333;
+				display: inline-block;
+				transition: all 0.2s;
 			}
 
 			&::before,
 			&::after {
 				content: "";
+				position: absolute;
+				left: 0;
 			}
+			&::before {
+				top: -8px;
+			}
+			&::after {
+				top: 8px;
+			}
+		}
+
+		// FUNCTIONALITY
+		&__btn:hover &__icon::before {
+			top: -10px;
+		}
+
+		&__btn:hover &__icon::after {
+			top: 10px;
+		}
+
+		&__checkbox:checked + &__btn &__icon {
+			background-color: transparent;
+		}
+		&__checkbox:checked + &__btn &__icon::before {
+			top: 0;
+			transform: rotate(135deg);
+		}
+		&__checkbox:checked + &__btn &__icon::after {
+			top: 0;
+			transform: rotate(-135deg);
 		}
 	}
 </style>

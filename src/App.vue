@@ -1,8 +1,5 @@
-<style lang="scss" scoped>
-</style>
-
 <template>
-	<div id="app">
+	<div id="app" style="background-color: #ddd; height: 100%">
 		<burger-expand></burger-expand>
 	</div>
 </template>
